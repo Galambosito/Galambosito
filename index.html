@@ -389,13 +389,74 @@
                     <p>A Galambosi-tó és környéke gazdag madárvilágnak ad otthont. Rendszeresen megfigyelhető itt a szürke gém, a tőkés réce, és időnként a jégmadár is. A tó partján és környékén változatos növényvilág található, amely fontos élőhelyet biztosít számos rovar- és kétéltűfajnak is.</p>
                     <p>A természeti értékek megőrzése érdekében fokozott figyelmet fordítunk a környezet védelmére és a fenntartható gazdálkodásra.</p>
                 </div>
-                <div class="about-images">
-                    <img src="táj 2.jpg" alt="Galambosi-tó látkép" class="about-image1">
-                    <img src="naplemente.jpg" alt="Galambosi-tó napnyugtakor" class="about-image1">
-                    <img src="növényzet.jpg" alt="Parti növényzet" class="about-image1">
-                    <img src="este.jpg" alt="Galambosi-tó este" class="about-image1">
-                </div>
-            </div>
+                
+<div class="about-images">
+    <img src="táj 2.jpg" alt="Galambosi-tó látkép" class="about-image1 gallery-image" onclick="openLightbox(0)">
+</div>
+
+<!-- Lightbox modal -->
+<div id="lightboxModal" class="lightbox-modal">
+  <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+  <img class="lightbox-content" id="lightboxImage">
+  <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+  <a class="next" onclick="changeImage(1)">&#10095;</a>
+</div>
+
+<style>
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  margin-top: 5vh;
+  border-radius: 10px;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 40px;
+  user-select: none;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+</style>
+
+</div>
         </div>
         
         <!-- Elérhetőség oldal -->
@@ -576,6 +637,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+</script>
+
+
+<script>
+const images = [
+  "táj 2.jpg",
+  "naplemente.jpg",
+  "növényzet.jpg",
+  "este.jpg"
+];
+
+let currentImageIndex = 0;
+
+function openLightbox(index) {
+  currentImageIndex = index;
+  document.getElementById("lightboxImage").src = images[index];
+  document.getElementById("lightboxModal").style.display = "block";
+}
+
+function closeLightbox() {
+  document.getElementById("lightboxModal").style.display = "none";
+}
+
+function changeImage(n) {
+  currentImageIndex += n;
+  if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+  if (currentImageIndex >= images.length) currentImageIndex = 0;
+  document.getElementById("lightboxImage").src = images[currentImageIndex];
+}
 </script>
 
 </body>
