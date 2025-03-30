@@ -469,7 +469,9 @@
             <div class="contact-container">
                 <div class="contact-form">
                     <h3>Írjon nekünk</h3>
-                    <form id="contactForm" method="POST">
+                    <form action="https://formsubmit.co/galambosito@gmail.com" method="POST">
+  <input type="hidden" name="_next" value="https://galambosito.github.io/Galambosito/">
+  <input type="hidden" name="_template" value="table">
                         <label for="name">Név:</label>
                         <input type="text" id="name" name="name" required>
                         
@@ -561,35 +563,7 @@
 
 
 
-<script>
-function closeModal() {
-  document.getElementById('thankYouModal').style.display = 'none';
-}
 
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      fetch("https://formsubmit.co/ajax/galambosito@gmail.com", {
-        method: 'POST',
-        body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          form.reset();
-          document.getElementById('thankYouModal').style.display = 'block';
-        } else {
-          alert('Hiba történt az elküldés során. Kérjük, próbálja újra.');
-        }
-      });
-    });
-  }
-});
-</script>
 
 
 <script>
