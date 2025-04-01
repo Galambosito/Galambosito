@@ -138,27 +138,60 @@
         }
         
         .about-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            padding: 1.5rem;
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
-        .about-image {
+        .gallery-container {
+            position: relative;
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: 300px;
+            overflow: hidden;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            filter: grayscale(100%); /* Fekete-fehér képek */
-            border: 1px solid var(--border-color);
         }
-        .about-image1 {
+        
+        .gallery-image {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-image:hover {
+            filter: grayscale(50%);
+        }
+        
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .gallery-nav button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .gallery-nav button:hover {
+            background-color: var(--hover-color);
         }
         
         .contact-container {
@@ -246,8 +279,7 @@
             height: auto;
             display: block;
             margin: 0 auto;
-            height: auto;
-            
+            max-height: 150px;
         }
         
         /* Címsorok */
@@ -261,6 +293,61 @@
             display: inline-block;
         }
         
+        /* Lightbox stílus */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            margin-top: 5vh;
+            border-radius: 10px;
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+        
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 40px;
+            user-select: none;
+            z-index: 2001;
+        }
+        
+        .prev {
+            left: 20px;
+        }
+        
+        .next {
+            right: 20px;
+        }
+        
         /* Különböző képernyőméretekre */
         @media (max-width: 768px) {
             .fish-container,
@@ -269,13 +356,69 @@
                 grid-template-columns: 1fr;
             }
             
-            .about-images {
-                margin-top: 1rem;
+            .gallery-container {
+                height: 250px;
+            }
+            
+            nav {
+                padding: 0.5rem;
+                overflow-x: auto;
+                white-space: nowrap;
             }
             
             nav a {
                 display: inline-block;
                 margin: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.3rem;
+            }
+            
+            .contact-method {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-method strong {
+                margin-bottom: 0.3rem;
+            }
+            
+            .prev, .next {
+                font-size: 30px;
+                padding: 10px;
+            }
+            
+            .close-lightbox {
+                top: 10px;
+                right: 20px;
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .fish-image,
+            .gallery-container {
+                height: 200px;
+            }
+            
+            .contact-form,
+            .contact-info {
+                padding: 1rem;
+            }
+            
+            .gallery-nav button {
+                width: 36px;
+                height: 36px;
             }
         }
         
@@ -287,13 +430,24 @@
         .page.active {
             display: block;
         }
+        
+        /* Sikeres üzenetküldés visszajelzés */
+        .success-message {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="logo-container">
-                <!-- Itt majd a tényleges logót kell használni -->
                 <img src="IMG_1131.jpg" alt="Galambosi-tó Logo" class="logo">
             </div>
             <h1>Galambosi-tó</h1>
@@ -390,73 +544,16 @@
                     <p>A természeti értékek megőrzése érdekében fokozott figyelmet fordítunk a környezet védelmére és a fenntartható gazdálkodásra.</p>
                 </div>
                 
-<div class="about-images">
-    <img src="táj 2.jpg" alt="Galambosi-tó látkép" class="about-image1 gallery-image" onclick="openLightbox(0)" style="width: 300%; max-width: 3000px; height: auto; display: block; margin: auto;">
-</div>
-
-<!-- Lightbox modal -->
-<div id="lightboxModal" class="lightbox-modal">
-  <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-  <img class="lightbox-content" id="lightboxImage">
-  <a class="prev" onclick="changeImage(-1)">&#10094;</a>
-  <a class="next" onclick="changeImage(1)">&#10095;</a>
-</div>
-
-<style>
-.lightbox-modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.9);
-}
-
-.lightbox-content {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 80vh;
-  margin-top: 5vh;
-  border-radius: 10px;
-}
-
-.close-lightbox {
-  position: absolute;
-  top: 30px;
-  right: 50px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: #fff;
-  font-weight: bold;
-  font-size: 40px;
-  user-select: none;
-}
-
-.prev {
-  left: 0;
-}
-
-.next {
-  right: 0;
-}
-</style>
-
-</div>
+                <div class="about-images">
+                    <div class="gallery-container">
+                        <img src="táj 2.jpg" alt="Galambosi-tó látkép" id="galleryImg" class="gallery-image">
+                    </div>
+                    <div class="gallery-nav">
+                        <button type="button" onclick="changeImage(-1)">&#10094;</button>
+                        <button type="button" onclick="changeImage(1)">&#10095;</button>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <!-- Elérhetőség oldal -->
@@ -468,10 +565,13 @@
             
             <div class="contact-container">
                 <div class="contact-form">
+                    <div id="successMessage" class="success-message">Köszönjük üzenetét! Hamarosan felvesszük Önnel a kapcsolatot.</div>
                     <h3>Írjon nekünk</h3>
-                    <form action="https://formsubmit.co/galambosito@gmail.com" method="POST">
-  <input type="hidden" name="_next" value="https://galambosito.github.io/Galambosito/">
-  <input type="hidden" name="_template" value="table">
+                    <form id="contactForm" action="https://formsubmit.co/galambosito@gmail.com" method="POST">
+                        <input type="hidden" name="_next" value="https://galambosito.github.io/Galambosito/">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_subject" value="Új üzenet a Galambosi-tó weboldaláról">
+                        
                         <label for="name">Név:</label>
                         <input type="text" id="name" name="name" required>
                         
@@ -527,7 +627,16 @@
         </div>
     </footer>
     
+    <!-- Lightbox modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightboxImage">
+        <a class="prev" onclick="lightboxChangeImage(-1)">&#10094;</a>
+        <a class="next" onclick="lightboxChangeImage(1)">&#10095;</a>
+    </div>
+    
     <script>
+        // Oldalváltás kezelése
         function showPage(pageId) {
             // Összes oldal elrejtése
             const pages = document.querySelectorAll('.page');
@@ -548,51 +657,94 @@
             });
         }
         
-        // Kapcsolati űrlap kezelése
+        // Képek a galériához
+        const images = [
+            "táj 2.jpg",
+            "naplemente.jpg",
+            "növényzet.jpg",
+            "este.jpg"
+        ];
+        
+        // Képleírások a galériához
+        const descriptions = [
+            "Galambosi-tó panoráma",
+            "Naplemente a tónál",
+            "Gazdag partmenti növényzet",
+            "Galambosi-tó esti fényben"
+        ];
+        
+        let currentImageIndex = 0;
+        
+        // Galéria képváltás
+        function changeImage(n) {
+            currentImageIndex = (currentImageIndex + n + images.length) % images.length;
+            const galleryImg = document.getElementById('galleryImg');
+            galleryImg.src = images[currentImageIndex];
+            galleryImg.alt = descriptions[currentImageIndex];
+        }
+        
+        // Lightbox megnyitása
+        function openLightbox() {
+            document.getElementById("lightboxImage").src = images[currentImageIndex];
+            document.getElementById("lightboxModal").style.display = "block";
+        }
+        
+        // Lightbox bezárása
+        function closeLightbox() {
+            document.getElementById("lightboxModal").style.display = "none";
+        }
+        
+        // Lightbox képváltás
+        function lightboxChangeImage(n) {
+            currentImageIndex = (currentImageIndex + n + images.length) % images.length;
+            document.getElementById("lightboxImage").src = images[currentImageIndex];
+        }
+        
+        // Galéria kép kattintás - lightbox nyitás
         document.addEventListener('DOMContentLoaded', function() {
+            const galleryImg = document.getElementById('galleryImg');
+            if (galleryImg) {
+                galleryImg.addEventListener('click', function() {
+                    openLightbox();
+                });
+            }
+            
+            // Kapcsolati űrlap kezelése
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Köszönjük üzenetét! Hamarosan felvesszük Önnel a kapcsolatot.');
-                    contactForm.reset();
+                    // Az alapértelmezett elküldést nem akadályozzuk meg,
+                    // de előkészítjük a visszatérés utáni üzenet megjelenítését
+                    
+                    // Tároljuk a sikeres küldés információt
+                    localStorage.setItem('formSubmitted', 'true');
                 });
             }
+            
+            // Ellenőrizzük, volt-e sikeres küldés
+            if (localStorage.getItem('formSubmitted') === 'true') {
+                // Ha volt, mutassuk a sikeres üzenetet
+                const successMessage = document.getElementById('successMessage');
+                if (successMessage) {
+                    successMessage.style.display = 'block';
+                    
+                    // Tisztítsuk a storage-t
+                    localStorage.removeItem('formSubmitted');
+                    
+                    // 5 másodperc után rejtsük el az üzenetet
+                    setTimeout(function() {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                }
+            }
+            
+            // ESC gomb lenyomására bezárjuk a lightboxot
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
         });
     </script>
-
-
-
-
-
-
-<script>
-const images = [
-  "táj 2.jpg",
-  "naplemente.jpg",
-  "növényzet.jpg",
-  "este.jpg"
-];
-
-let currentImageIndex = 0;
-
-function openLightbox(index) {
-  currentImageIndex = index;
-  document.getElementById("lightboxImage").src = images[index];
-  document.getElementById("lightboxModal").style.display = "block";
-}
-
-function closeLightbox() {
-  document.getElementById("lightboxModal").style.display = "none";
-}
-
-function changeImage(n) {
-  currentImageIndex += n;
-  if (currentImageIndex < 0) currentImageIndex = images.length - 1;
-  if (currentImageIndex >= images.length) currentImageIndex = 0;
-  document.getElementById("lightboxImage").src = images[currentImageIndex];
-}
-</script>
-
 </body>
 </html>
