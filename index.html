@@ -404,13 +404,17 @@
         .price-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1rem 0;
+            font-size: 1rem;
+            table-layout: fixed; 
         }
         
         .price-table th, 
         .price-table td {
             padding: 0.8rem;
             text-align: left;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            vertical-align: top;
             border-bottom: 1px solid var(--border-color);
         }
         
@@ -599,11 +603,18 @@
                 margin-top: 1rem;
                 margin-bottom: 2rem;
             }
-       
+            .price-table {
+                font-size: 0.9rem;
+            }
+
+            .price-table th, .price-table td {
+                padding: 0.6rem;
+             }
             
             .tab-button {
                 margin-bottom: 0.5rem;
             }
+            
         }
         
         @media (max-width: 480px) {
@@ -690,7 +701,7 @@
             </section>
             
             <!-- Árak szekció -->
-            <section class="info-card">
+            <section class="info-card table-responsive">
                 <h2>Napijegy árak</h2>
                 <table class="price-table">
                     <tr>
