@@ -24,6 +24,8 @@
             --accent-color: #444444;
             --hover-color: #666666;
             --border-color: #dddddd;
+            --button-color: #2c2c2c;
+            --button-hover: #444444;
         }
         
         html, body {
@@ -85,42 +87,43 @@
         }
         
         .fish-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
-            margin-bottom: 3rem;
+             padding: 2rem 1rem;
         }
         
         .fish-card {
-            background-color: var(--card-background);
-            border-radius: 8px;
+            width: 300px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
-            border: 1px solid var(--border-color);
         }
         
         .fish-card:hover {
-            transform: translateY(-5px);
+             transform: scale(1.03);
         }
         
         .fish-image {
-            width: 100%;
+             width: 100%;
             height: 200px;
             object-fit: cover;
-            filter: grayscale(100%); /* Fekete-fehér képek */
         }
         
         .fish-info {
-            padding: 1.5rem;
+             padding: 1rem;
         }
+
         
         .fish-name {
-            color: var(--primary-color);
             margin-top: 0;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.3rem;
         }
         
         footer {
@@ -175,6 +178,7 @@
         
         .gallery-image:hover {
             filter: grayscale(50%);
+            cursor: pointer;
         }
         
         .gallery-nav {
@@ -320,7 +324,10 @@
             display: block;
             max-width: 90%;
             max-height: 80vh;
-            margin-top: 5vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             border-radius: 10px;
         }
         
@@ -356,16 +363,188 @@
         .next {
             right: 20px;
         }
+
+        /* Új gomb stílus */
+        .btn {
+            display: inline-block;
+            background-color: var(--button-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            margin: 1rem 0;
+        }
         
+        .btn:hover {
+            background-color: var(--button-hover);
+        }
+        
+        .btn-center {
+            display: block;
+            margin: 1.5rem auto;
+            max-width: 250px;
+        }
+        
+        /* Új info-card stílus */
+        .info-card {
+            background-color: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        /* Árak táblázat */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .price-table th, 
+        .price-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .price-table th {
+            background-color: #f0f0f0;
+        }
+        
+        /* Rekordok tábla */
+        .records-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem 1rem;
+        }
+
+        .record-card:hover {
+             transform: translateY(-5px);
+        }
+
+        .record-card {
+            width: 300px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .record-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .record-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .record-details {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 0.5rem 1rem;
+            justify-content: center;
+            font-size: 0.95rem;
+        }
+
+        .record-label {
+            font-weight: bold;
+        }
+
+        
+        /* Új főoldali slider */
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .slider-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .slider-image.active {
+            opacity: 1;
+        }
+        
+        /* Tab rendszer a halak oldalához */
+        .tab-container {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            overflow-x: auto;
+            justify-content: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .tab-button {
+            background-color: #e0e0e0;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            margin-right: 0.5rem;
+            cursor: pointer;
+            border-radius: 4px 4px 0 0;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .tab-button:hover {
+            background-color: #d0d0d0;
+        }
+        
+        .tab-button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }        
         /* Különböző képernyőméretekre */
         @media (max-width: 768px) {
             .fish-container,
             .about-container,
-            .contact-container {
+            .contact-container,
+            .records-container {
                 grid-template-columns: 1fr;
             }
             
-            .gallery-container {
+            .gallery-container,
+            .hero-slider {
                 height: 250px;
             }
             
@@ -412,11 +591,25 @@
                 right: 20px;
                 font-size: 30px;
             }
+            
+            .tab-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+                margin-top: 1rem;
+                margin-bottom: 2rem;
+            }
+       
+            
+            .tab-button {
+                margin-bottom: 0.5rem;
+            }
         }
         
         @media (max-width: 480px) {
             .fish-image,
-            .gallery-container {
+            .gallery-container,
+            .record-image {
                 height: 200px;
             }
             
@@ -428,6 +621,10 @@
             .gallery-nav button {
                 width: 36px;
                 height: 36px;
+            }
+            
+            .hero-slider {
+                height: 200px;
             }
         }
         
@@ -471,67 +668,250 @@
             <a href="#" onclick="showPage('contact')">Elérhetőség</a>
         </div>
     </nav>
-    
+    <br>
     <div class="container">
         <!-- Főoldal -->
         <div id="home" class="page active">
+            <!-- Új automatikus képváltó slider -->
+            <div class="hero-slider">
+                <img src="táj 2.jpg" alt="Galambosi-tó panoráma" class="slider-image active">
+                <img src="naplemente.jpg" alt="Naplemente a tónál" class="slider-image">
+                <img src="este.jpg" alt="Galambosi-tó esti fényben" class="slider-image">
+                <img src="gal1.jpg" alt="Galambosi-tó" class="slider-image">
+                <img src="gal2.jpg" alt="Galambosi-tó" class="slider-image">
+                <img src="slide1.jpeg" alt="Galambosi-tó" class="slider-image">
+                <img src="slide2.jpeg" alt="Galambosi-tó" class="slider-image">
+            </div>
+            
             <section class="intro">
                 <h2>Üdvözöljük a Galambosi-tó weboldalán!</h2>
-                <p>Ismerje meg a tavunkban élő különböző halfajtákat. Tavunk gazdag élővilágnak ad otthont, különös tekintettel az alábbi halfajtákra.</p>
+                <p>Ismerje meg festői környezetben található tavunkat, amely kiváló horgászati lehetőségeket és nyugodt kikapcsolódást kínál minden természetkedvelő számára.</p>
+                <a href="#" onclick="showPage('fish')" class="btn btn-center">Halfajtáink és rekordok</a>
             </section>
             
-            <section class="fish-section">
-                <h2>Halfajtáink</h2>
-                <div class="fish-container">
-                    <!-- Amúr -->
-                    <div class="fish-card">
-                        <img src="amúr fotó.jpg" alt="Amúr" class="fish-image">
-                        <div class="fish-info">
-                            <h3 class="fish-name">Amúr</h3>
-                            <p>Az amúr (fehér amúr) egy növényevő halfaj, amely főként vízinövényekkel táplálkozik. Könnyen felismerhető zöldes-ezüstös testéről és nagy, erőteljes pikkelyeiről. Akár 1 méter hosszúra is megnőhet, és súlya elérheti a 30-35 kilogrammot.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Ponty -->
-                    <div class="fish-card">
-                        <img src="ponty fotó.jpg" alt="Ponty" class="fish-image">
-                        <div class="fish-info">
-                            <h3 class="fish-name">Ponty</h3>
-                            <p>A ponty Magyarország egyik legkedveltebb halfaja. Jellegzetes aranyló-barnás színe és erőteljes, magas teste könnyen felismerhetővé teszi. Mindenevő hal, amely fenéklakóként kutatja az iszapot táplálék után. A horgászok körében különösen népszerű.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Tokhal -->
-                    <div class="fish-card">
-                        <img src="tok fotó.webp" alt="Tokhal" class="fish-image">
-                        <div class="fish-info">
-                            <h3 class="fish-name">Tokhal</h3>
-                            <p>A tokhal ősi halfaj, melynek jellegzetessége a porcos váz és a csontos vértlemezek sora a teste oldalán. Hosszú, cápára emlékeztető testformája van. Fenéklakó hal, amely főként kisebb gerinctelenekkel táplálkozik. Több tokfaj veszélyeztetett.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Keszeg -->
-                    <div class="fish-card">
-                        <img src="keszeg fotó.jpg" alt="Keszeg" class="fish-image">
-                        <div class="fish-info">
-                            <h3 class="fish-name">Keszeg</h3>
-                            <p>A keszeg gyűjtőnév alatt számos halfaj található (pl. dévérkeszeg, bodorka, karikakeszeg). Többnyire oldalról lapított testű, ezüstös színű halak. Általában kisebb-közepes méretűek és csapatokban élnek. Mindenevők, és gyakran a vízoszlop középső részén tartózkodnak.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Kárász -->
-                    <div class="fish-card">
-                        <img src="kárász fotó.jpg" alt="Kárász" class="fish-image">
-                        <div class="fish-info">
-                            <h3 class="fish-name">Kárász</h3>
-                            <p>A kárász egy ellenálló, aranyló-bronzos színű hal, amely jól alkalmazkodik a változó környezeti feltételekhez. Teste oldalról lapított, magas. Sekélyebb vizekben, növényzettel benőtt területeken érzi jól magát. Táplálékát főként vízinövények és apró gerinctelenek alkotják.</p>
-                        </div>
+            <!-- Árak szekció -->
+            <section class="info-card">
+                <h2>Napijegy árak</h2>
+                <table class="price-table">
+                    <tr>
+                      <th>Jegy típusa</th>
+                      <th>Ár</th>
+                      <th>Megjegyzés</th>
+                    </tr>
+                    <tr>
+                      <td>Alap napijegy</td>
+                      <td>4.500 Ft</td>
+                      <td>1 vagy 2 bottal horgászható, szakáll nélküli horog kötelező</td>
+                    </tr>
+                    <tr>
+                      <td>Szanetli igénybevétele</td>
+                      <td>+2.000 Ft / db</td>
+                      <td>Kényelmes horgászhely, fedett pihenővel</td>
+                    </tr>
+                    <tr>
+                      <td>Éjszakai horgászat</td>
+                      <td>-</td>
+                      <td>Minden második hétvégén, előzetes egyeztetéssel</td>
+                    </tr>
+                    <tr>
+                      <td>Különleges igény</td>
+                      <td>Megegyezés szerint</td>
+                      <td>Kérjük, érdeklődjön telefonon vagy e-mailben</td>
+                    </tr>
+                  </table>
+                <div id="nyitvatartas" class="section">
+                    <h2>Nyitvatartás</h2>
+                    <ul>
+                      <li><strong>Hétfő–Csütörtök:</strong> Telefonos egyeztetés alapján, vagy emailes funkciónkal!</li>
+                      <li><strong>Péntek:</strong> 7:00 – 19:00</li>
+                      <li><strong>Szombat:</strong> 6:00 – 19:00</li>
+                      <li><strong>Vasárnap:</strong> 6:00 – 19:00</li>
+                    </ul>
+                    <p><strong>Minden második hétvégén éjszakai horgászat.</strong></p>
+                    <p>Bármilyen eltérő kérés, igény esetén a megadott számon bátran keressenek, vagy akár használhatják emailes redszerünket ami weboldalunkba be van építve!</p>
+                    <p>Szeretettel várunk mindenkit, akár csak egy családi főzőcskére. Vannak kialakított szanetlik, tűzrakóhelyek... Baráti, szülinapi, rokoni rendezvényekre is van lehetőség.</p>
+                  </div>
+            </section>
+            
+            <!-- Horgászati szabályzat szekció -->
+            <section id="szabalyzat" class="info-card" style="
+            background: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            ">
+                <h2 style="color: #800000; border-bottom: 2px solid #800000; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Szabályzat</h2>
+                <div>
+                    <p style="font-style: italic; margin-bottom: 1rem;">
+                        A Galambosi Horgásztavon az Országos Horgászrend van érvényben, amely kiegészül a tóra érvényes egyéni előírásokkal. A napijegy vagy bérlet megváltásával a horgász elfogadja a szabályokat.
+                      </p>
+                      <ul style="list-style: none; padding: 0;">
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;"><strong>Gépjárművel</strong> a tó területére behajtani <strong>TILOS</strong>! A felszerelés mozgatására húzható kiskocsit biztosítunk.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;">A tavon csak <strong>érvényes állami horgászengedéllyel</strong> lehet horgászni.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;">A napijegy <strong>2 bottal</strong> való horgászatra jogosít, botonként <strong>1 szakáll nélküli horoggal</strong>.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;"><strong>Pontybölcső</strong> vagy jó minőségű matrac használata <strong>kötelező</strong>.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;">A halak fényképezése kizárólag <strong>pontybölcső felett</strong>, <strong>térdelve/guggolva</strong> történhet.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;"><strong>Elhagyós szerelék</strong> javasolt, <strong>fonott zsinór</strong> csak előtétként vagy horogelőkeként használható.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;">A halakat visszaengedés előtt <strong>sebfertőtlenítővel</strong> kell kezelni.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;"><strong>Nagy méretű merítőszák</strong> használata <strong>kötelező</strong>.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;"><strong>Kíméletes bánásmód</strong> kötelező, <strong>sérülés esetén</strong> az őr értesítése szükséges.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;"><strong>Járművet, kutyát behozni TILOS</strong>.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;"><strong>Tűzrakás</strong> csak a <strong>kijelölt helyeken</strong> engedélyezett.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;">A <strong>szanetlik, ülőhelyek, padok</strong> rendeltetésszerű használata <strong>elvárás</strong>.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;"><strong>Szemetelni TILOS</strong>, minden hulladékot <strong>el kell vinni</strong>.</li>
+                        <li style="border-left: 4px solid #000000; padding-left: 1rem; margin-bottom: 1rem;"><strong>Napijegy:</strong> 4500 Ft · <strong>Szanetli igénybevétele:</strong> +2000 Ft/db · <strong>Éjszakai horgászat</strong> minden 2. hétvégén</li>
+                        
+                    </ul>
                     </div>
                 </div>
             </section>
         </div>
         
-        <!-- Rólunk oldal -->
+        <!-- Halak oldal -->
+        <div id="fish" class="page">
+            <section class="intro">
+                <h2>Halak a Galambosi-tóban</h2>
+                <p>Ismerje meg a tavunkban élő különböző halfajtákat és az eddigi rekordokat.</p>
+            </section>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('fish-species')">Halfajták</button>
+                    <button class="tab-button" onclick="showTab('fish-records')">Rekordok</button>
+                </div>
+                
+                <!-- Halfajták tab -->
+                <div id="fish-species" class="tab-content active">
+                    <div class="fish-container">
+                        <!-- Amúr -->
+                        <div class="fish-card">
+                            <img src="amúr fotó.jpg" alt="Amúr" class="fish-image">
+                            <div class="fish-info">
+                                <h3 class="fish-name">Amúr</h3>
+                                <p>Az amúr (fehér amúr) egy növényevő halfaj, amely főként vízinövényekkel táplálkozik. Könnyen felismerhető zöldes-ezüstös testéről és nagy, erőteljes pikkelyeiről. Akár 1 méter hosszúra is megnőhet, és súlya elérheti a 30-35 kilogrammot.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Ponty -->
+                        <div class="fish-card">
+                            <img src="ponty fotó.jpg" alt="Ponty" class="fish-image">
+                            <div class="fish-info">
+                                <h3 class="fish-name">Ponty</h3>
+                                <p>A ponty Magyarország egyik legkedveltebb halfaja. Jellegzetes aranyló-barnás színe és erőteljes, magas teste könnyen felismerhetővé teszi. Mindenevő hal, amely fenéklakóként kutatja az iszapot táplálék után. A horgászok körében különösen népszerű.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Koi ponty (új halfaj) -->
+                        <div class="fish-card">
+                            <img src="koiponty.jpg" alt="Koi ponty" class="fish-image">
+                            <div class="fish-info">
+                                <h3 class="fish-name">Koi ponty</h3>
+                                <p>A koi ponty a közönséges ponty színes változata, amely különleges mintázatáról ismert. Ezek a halak rendkívül dekoratívak, fehér alapon piros, fekete, sárga, narancssárga vagy kék foltokkal. Tökéletesen alkalmazkodtak a tavi környezethez, és különleges látványt nyújtanak a horgászoknak.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tokhal -->
+                        <div class="fish-card">
+                            <img src="tok fotó.webp" alt="Tokhal" class="fish-image">
+                            <div class="fish-info">
+                                <h3 class="fish-name">Tokhal</h3>
+                                <p>A tokhal ősi halfaj, melynek jellegzetessége a porcos váz és a csontos vértlemezek sora a teste oldalán. Hosszú, cápára emlékeztető testformája van. Fenéklakó hal, amely főként kisebb gerinctelenekkel táplálkozik. Több tokfaj veszélyeztetett.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Keszeg -->
+                        <div class="fish-card">
+                            <img src="keszeg fotó.jpg" alt="Keszeg" class="fish-image">
+                            <div class="fish-info">
+                                <h3 class="fish-name">Keszeg</h3>
+                                <p>A keszeg gyűjtőnév alatt számos halfaj található (pl. dévérkeszeg, bodorka, karikakeszeg). Többnyire oldalról lapított testű, ezüstös színű halak. Általában kisebb-közepes méretűek és csapatokban élnek. Mindenevők, és gyakran a vízoszlop középső részén tartózkodnak.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Kárász -->
+                        <div class="fish-card">
+                            <img src="kárász fotó.jpg" alt="Kárász" class="fish-image">
+                            <div class="fish-info">
+                                <h3 class="fish-name">Kárász</h3>
+                                <p>A kárász egy ellenálló, aranyló-bronzos színű hal, amely jól alkalmazkodik a változó környezeti feltételekhez. Teste oldalról lapított, magas. Sekélyebb vizekben, növényzettel benőtt területeken érzi jól magát. Táplálékát főként vízinövények és apró gerinctelenek alkotják.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Rekordok tab -->
+                <div id="fish-records" class="tab-content">
+                    <div class="records-container">
+                        <!-- Ponty rekord -->
+                        <div class="record-card">
+                            <img src="ponty_rekord.jpg" alt="Rekord ponty" class="record-image">
+                            <div class="record-info">
+                                <h3 class="record-name">Tükörponty</h3>
+                                <div class="record-details">
+                                    <span class="record-label">Súly:</span>
+                                    <span>-</span>
+                                    <span class="record-label">Fogta:</span>
+                                    <span>-</span>
+                                    <span class="record-label">Dátum:</span>
+                                    <span>-</span>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Amur rekord -->
+                        <div class="record-card">
+                            <img src="amur_rekord.jpg" alt="Rekord amur" class="record-image">
+                            <div class="record-info">
+                                <h3 class="record-name">Amur</h3>
+                                <div class="record-details">
+                                    <span class="record-label">Súly:</span>
+                                    <span>-</span>
+                                    <span class="record-label">Fogta:</span>
+                                    <span>-</span>
+                                    <span class="record-label">Dátum:</span>
+                                    <span>-</span>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Koi ponty rekord -->
+                        <div class="record-card">
+                            <img src="koi_rekord.jpg" alt="Rekord koi ponty" class="record-image">
+                            <div class="record-info">
+                                <h3 class="record-name">Koi ponty</h3>
+                                <div class="record-details">
+                                    <span class="record-label">Súly:</span>
+                                    <span>-</span>
+                                    <span class="record-label">Fogta:</span>
+                                    <span>-</span>
+                                    <span class="record-label">Dátum:</span>
+                                    <span>-</span>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Tokhal rekord -->
+                        <div class="record-card">
+                            <img src="tok_rekord.jpg" alt="Rekord tokhal" class="record-image">
+                            <div class="record-info">
+                                <h3 class="record-name">Tokhal</h3>
+                                <div class="record-details">
+                                    <span class="record-label">Súly:</span>
+                                    <span>-kg</span>
+                                    <span class="record-label">Fogta:</span>
+                                    <span>-</span>
+                                    <span class="record-label">Dátum:</span>
+                                    <span>-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Rólunk oldal - A JAVÍTÁS: Ez ide került át a fish tab-content-en kívülre -->
         <div id="about" class="page">
             <section class="intro">
                 <h2>A Galambosi-tóról</h2>
@@ -541,7 +921,7 @@
             <div class="about-container">
                 <div class="about-text">
                     <h3>Történetünk</h3>
-                    <p>A Galambosi-tó Püspökhatvan település közelében található, a Galgamente festői környezetében. A tó eredetileg természetes módon alakult ki, majd az évek során gondos kezelés mellett fejlesztették a mai formájára. Vízfelülete közel 5 hektár, átlagos mélysége 2-3 méter között változik.</p>
+                    <p>A Galambosi-tó Püspökhatvan település közelében található, a Galgamente festői környezetében. Vízfelülete közel 2.3 hektár, átlagos mélysége 1,5-2 méter között változik.</p>
                     <p>A tó a Galga-patak vízgyűjtő területén helyezkedik el, és jelentős szerepet játszik a helyi ökoszisztéma fenntartásában. A környező dombos táj és a változatos partszakasz különleges hangulatot kölcsönöz a területnek.</p>
                     
                     <h3>Horgászati lehetőségek</h3>
@@ -565,7 +945,7 @@
             </div>
         </div>
         
-        <!-- Elérhetőség oldal -->
+        <!-- Elérhetőség oldal - A JAVÍTÁS: Ez ide került át a fish tab-content-en kívülre -->
         <div id="contact" class="page">
             <section class="intro">
                 <h2>Kapcsolat</h2>
@@ -615,18 +995,23 @@
                         <span>galambosito@gmail.com</span>
                     </div>
                     
-                    <div class="contact-method">
-                        <strong>Nyitvatartás:</strong>
-                        <span>Hétfő-Vasárnap: 6:00 - 20:00</span>
-                    </div>
+
                     
                     <h3>Tókezelő</h3>
                     <p>Lukács Gábor<br>
-                    +36 (20) 987-6543<br>
+                    +36 (30) 520-8324<br>
                     galambosito@gmail.com</p>
                 </div>
             </div>
         </div>
+    </div>
+    
+    <!-- Lightbox -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <img id="lightboxImage" class="lightbox-content">
+        <a class="prev" onclick="lightboxChangeImage(-1)">&#10094;</a>
+        <a class="next" onclick="lightboxChangeImage(1)">&#10095;</a>
     </div>
     
     <footer>
@@ -635,15 +1020,7 @@
             <p>Horgászati információk: +36 (30) 520 8324</p>
         </div>
     </footer>
-    
-    <!-- Lightbox modal -->
-    <div id="lightboxModal" class="lightbox-modal">
-        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-        <img class="lightbox-content" id="lightboxImage">
-        <a class="prev" onclick="lightboxChangeImage(-1)">&#10094;</a>
-        <a class="next" onclick="lightboxChangeImage(1)">&#10095;</a>
-    </div>
-    
+
     <script>
         // Oldalváltás kezelése
         function showPage(pageId) {
@@ -676,7 +1053,14 @@
             "gal2.jpg",
             "gal3.jpg",
             "gal4.jpg",
-            "gal5.jpg"
+            "gal5.jpg",
+            "to1.jpeg",
+            "to2.jpeg",
+            "to3.jpeg",
+            "to4.jpeg",
+            "to5.jpeg",
+            "to6.jpeg",
+            
         ];
         
         // Képleírások a galériához
@@ -685,6 +1069,12 @@
             "Naplemente a tónál",
             "Gazdag partmenti növényzet",
             "Galambosi-tó esti fényben",
+            "Galambosi-tó",
+            "Galambosi-tó",
+            "Galambosi-tó",
+            "Galambosi-tó",
+            "Galambosi-tó",
+            "Galambosi-tó",
             "Galambosi-tó",
             "Galambosi-tó",
             "Galambosi-tó",
@@ -720,7 +1110,39 @@
             document.getElementById("lightboxImage").src = images[currentImageIndex];
         }
         
-        // Galéria kép kattintás - lightbox nyitás
+        // Tab kezelés
+        function showTab(tabId) {
+            // Tab gombok kezelése
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.getAttribute('onclick').includes(tabId)) {
+                    button.classList.add('active');
+                }
+            });
+
+            // Tab tartalom kezelése
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Automatikus képváltó slider
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slider-image');
+
+        function showNextSlide() {
+            slides[currentSlideIndex].classList.remove('active');
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            slides[currentSlideIndex].classList.add('active');
+        }
+
+        // Képváltás 5 másodpercenként
+        setInterval(showNextSlide, 5000);
+        
+        // DOM betöltéskor lefutó kód
         document.addEventListener('DOMContentLoaded', function() {
             const galleryImg = document.getElementById('galleryImg');
             if (galleryImg) {
