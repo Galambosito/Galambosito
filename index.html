@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="icon" href="logo2.png" type="image/png">
     <title>Galambosi-tó</title>
     <meta name="description" content="Horgászati lehetőségek, halfajták, kapcsolat és természetközeli élmény a Galambosi-tónál.">
     <meta name="keywords" content="galambosi tó, püspökhatvan, horgászat, halfajták, természet, tó">
     <meta name="author" content="Galambosi-tó">
     <meta property="og:title" content="Galambosi-tó – Püspökhatvan természeti kincse">
     <meta property="og:description" content="Ismerje meg a Galambosi-tavat, halfajtáinkat és a természet nyugalmát.">
-    <meta property="og:image" content="https://galambosito.github.io/Galambosito/elokep.png">
+    <meta property="og:image" content="https://galambosito.github.io/Galambosito/sharecucc.png">
     <meta property="og:url" content="https://galambosito.github.io/Galambosito/">
     <meta name="twitter:card" content="summary_large_image">
     <style>
@@ -405,7 +405,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 1rem;
-            table-layout: fixed; 
+            table-layout: auto; 
         }
         
         .price-table th, 
@@ -713,9 +713,9 @@
                 <h2>Napijegy árak</h2>
                 <table class="price-table">
                     <colgroup>
-                        <col style="width: 30%;">
-                        <col style="width: 20%;">
-                        <col style="width: 50%;">
+                        <col style="width: 25%;">
+                        <col style="width: 15%;">
+                        <col style="width: auto;">
                       </colgroup>
                     <tr>
                       <th>Jegy típusa</th>
@@ -867,6 +867,21 @@
                 <!-- Rekordok tab -->
                 <div id="fish-records" class="tab-content">
                     <div class="records-container">
+                        <div class="record-card" style="background-color: #f9f9f9; border: 2px dashed #000000; text-align: center;">
+                            <div class="record-info">
+                              <h3 class="record-name">Te is rekordot döntöttél?</h3>
+                              <p style="margin: 1rem 0;">
+                                Küldd el nekünk a haladról készült képet, a súlyát és az adataidat az oldal alján található űrlapon keresztül!
+                              </p>
+                              <p style="font-size: 0.95rem;">
+                                A beküldött rekordokat ellenőrzés után feltöltjük ide.
+                              </p>
+                              <a href="javascript:void(0);" onclick="showPage('contact')"
+                              style="display: inline-block; background-color: #000000; color: white; text-decoration: none; border-radius: 5px; padding: 0.5rem 1rem; font-weight: bold; text-align: center; width: fit-content; margin-left: auto; margin-right: auto;">
+                             Küldés az űrlapon keresztül
+                           </a>
+                            </div>
+                          </div>
                         <!-- Ponty rekord -->
                         <div class="record-card">
                             <img src="ponty_rekord.jpg" alt="Rekord ponty" class="record-image">
@@ -978,27 +993,25 @@
             
             <div class="contact-container">
                 <div class="contact-form">
-                    <div id="successMessage" class="success-message">Köszönjük üzenetét! Hamarosan felvesszük Önnel a kapcsolatot.</div>
                     <h3>Írjon nekünk</h3>
-                    <form id="contactForm" action="https://formsubmit.co/galambosito@gmail.com" method="POST">
-                        <input type="hidden" name="_next" value="https://galambosito.github.io/Galambosito/">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_subject" value="Új üzenet a Galambosi-tó weboldaláról">
-                        
+                    <form action="https://formspree.io/f/mgvanrao" method="POST" enctype="multipart/form-data">
                         <label for="name">Név:</label>
                         <input type="text" id="name" name="name" required>
-                        
+                      
                         <label for="email">E-mail:</label>
                         <input type="email" id="email" name="email" required>
-                        
+                      
                         <label for="subject">Tárgy:</label>
-                        <input type="text" id="subject" name="subject" required>
-                        
+                        <input type="text" id="subject" name="subject">
+                      
                         <label for="message">Üzenet:</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
-                        
+                      
+                        <label for="file">Kép csatolása (opcionális):</label>
+                        <input type="file" id="file" name="attachment">
+                        <input type="hidden" name="_next" value="https://www.galambosi-to.hu">
                         <button type="submit">Küldés</button>
-                    </form>
+                      </form>
                 </div>
                 <div class="contact-info">
                     <h3>Elérhetőségeink</h3>
