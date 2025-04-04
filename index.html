@@ -10,9 +10,10 @@
     <meta name="author" content="Galambosi-tó">
     <meta property="og:title" content="Galambosi-tó – Püspökhatvan természeti kincse">
     <meta property="og:description" content="Ismerje meg a Galambosi-tavat, halfajtáinkat és a természet nyugalmát.">
-    <meta property="og:image" content="https://galambosito.github.io/Galambosito/sharecucc.png">
-    <meta property="og:url" content="https://galambosito.github.io/Galambosito/">
+    <meta property="og:image" content="https://galambosi-to.hu/sharecucc.png">
+    <meta property="og:url" content="https://galambosi-to.hu/Galambosito/">
     <meta name="twitter:card" content="summary_large_image">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         :root {
             --primary-color: #1a1a1a;
@@ -987,67 +988,54 @@
         <!-- Elérhetőség oldal - A JAVÍTÁS: Ez ide került át a fish tab-content-en kívülre -->
         <div id="contact" class="page">
             <section class="intro">
-                <h2>Kapcsolat</h2>
-                <p>Vegye fel velünk a kapcsolatot, ha további információra van szüksége</p>
+              <h2>Kapcsolat</h2>
+              <p>Vegye fel velünk a kapcsolatot, ha további információra van szüksége</p>
             </section>
-            
+        
             <div class="contact-container">
-                <!-- Bal oldal: űrlap -->
-                <div class="contact-form">
-                  <h3>Írjon nekünk</h3>
-                  <form action="https://api.staticforms.xyz/submit" method="POST" enctype="multipart/form-data">
-                    <label for="name">Név:</label>
-                    <input type="text" id="name" name="name" required>
-              
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" required>
-              
-                    <label for="subject">Tárgy:</label>
-                    <input type="text" id="subject" name="subject">
-              
-                    <label for="message">Üzenet:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-              
-                    <label for="file">Kép csatolása (opcionális):</label>
-                    <input type="file" id="file" name="$file">
-              
-                    <!-- StaticForms hidden mezők -->
-                    <input type="hidden" name="accessKey" value="sf_0m8i7c8e229b9bad1c54i570">
-                    <input type="hidden" name="redirectTo" value="https://www.galambosi-to.hu">
-                    <input type="hidden" name="replyTo" value="galambosito@gmail.com">
-              
-                    <button type="submit">Küldés</button>
-                  </form>
+              <div class="contact-form">
+                <h3>Írjon nekünk</h3>
+                <form id="contact-form">
+                  <label for="name">Név:</label>
+                  <input type="text" id="name" name="name" required>
+        
+                  <label for="email">E-mail:</label>
+                  <input type="email" id="email" name="email" required>
+        
+                  <label for="subject">Tárgy:</label>
+                  <input type="text" id="subject" name="subject">
+        
+                  <label for="message">Üzenet:</label>
+                  <textarea id="message" name="message" rows="5" required></textarea>
+        
+                  <label for="file">Kép csatolása (opcionális):</label>
+                  <input type="file" id="file" name="file">
+        
+                  <button type="submit">Küldés</button>
+                </form>
+              </div>
+              <div class="contact-info">
+                <h3>Elérhetőségeink</h3>
+                <p>Szívesen válaszolunk minden kérdésre a tóval, horgászattal és látogatással kapcsolatban. Akár helyfoglalás is lehetséges a tökéletes horgászat érdekében!</p>
+                <div class="contact-method">
+                  <strong>Cím:</strong>
+                  <span>2682 Püspökhatvan, Galambosi-tó</span>
                 </div>
-              
-                <!-- Jobb oldal: elérhetőség -->
-                <div class="contact-info">
-                  <h3>Elérhetőségeink</h3>
-                  <p>Szívesen válaszolunk minden kérdésre a tóval, horgászattal és látogatással kapcsolatban. Akár helyfoglalás is lehetséges a tökéletes horgászat érdekében!</p>
-              
-                  <div class="contact-method">
-                    <strong>Cím:</strong>
-                    <span>2682 Püspökhatvan, Galambosi-tó</span>
-                  </div>
-              
-                  <div class="contact-method">
-                    <strong>Telefon:</strong>
-                    <span>+36 (30) 520-8324</span>
-                  </div>
-              
-                  <div class="contact-method">
-                    <strong>E-mail:</strong>
-                    <span>galambosito@gmail.com</span>
-                  </div>
-              
-                  <h3>Tókezelő</h3>
-                  <p>Lukács Gábor<br>
-                    +36 (30) 520-8324<br>
-                    galambosito@gmail.com</p>
+                <div class="contact-method">
+                  <strong>Telefon:</strong>
+                  <span>+36 (30) 520-8324</span>
                 </div>
+                <div class="contact-method">
+                  <strong>E-mail:</strong>
+                  <span>galambosito@gmail.com</span>
+                </div>
+                <h3>Tókezelő</h3>
+                <p>Lukács Gábor<br>
+                  +36 (30) 520-8324<br>
+                  galambosito@gmail.com</p>
+              </div>
             </div>
-    </div>
-    
+          </div>
     <!-- Lightbox -->
     <div id="lightboxModal" class="lightbox-modal">
         <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
@@ -1064,6 +1052,46 @@
     </footer>
 
     <script>
+    (function() {
+        emailjs.init("fr2AS10__b0Ef2ifC"); // Cseréld ki a saját publikus kulcsodra
+    })();
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const fileInput = document.getElementById('file');
+        const file = fileInput.files[0];
+
+        let templateParams = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                templateParams.file = e.target.result;
+                templateParams.filename = file.name;
+                sendEmail(templateParams);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            sendEmail(templateParams);
+        }
+    });
+
+    function sendEmail(params) {
+        emailjs.send('service_kkdhpgq', 'template_hxfapxo', params)
+            .then(function(response) {
+                alert('Köszönjük! Üzenetét elküldtük.');
+                document.getElementById('contact-form').reset();
+                window.location.href = 'https://www.galambosi-to.hu';
+            }, function(error) {
+                alert('Hiba történt: ' + JSON.stringify(error));
+            });
+    }
         // Oldalváltás kezelése
         function showPage(pageId) {
             // Összes oldal elrejtése
