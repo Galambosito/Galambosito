@@ -992,55 +992,60 @@
             </section>
             
             <div class="contact-container">
+                <!-- Bal oldal: űrlap -->
                 <div class="contact-form">
-                    <h3>Írjon nekünk</h3>
-                    <form action="https://formspree.io/f/mgvanrao" method="POST" enctype="multipart/form-data">
-                        <label for="name">Név:</label>
-                        <input type="text" id="name" name="name" required>
-                      
-                        <label for="email">E-mail:</label>
-                        <input type="email" id="email" name="email" required>
-                      
-                        <label for="subject">Tárgy:</label>
-                        <input type="text" id="subject" name="subject">
-                      
-                        <label for="message">Üzenet:</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                      
-                        <label for="file">Kép csatolása (opcionális):</label>
-                        <input type="file" id="file" name="attachment">
-                        <input type="hidden" name="_next" value="https://www.galambosi-to.hu">
-                        <button type="submit">Küldés</button>
-                      </form>
+                  <h3>Írjon nekünk</h3>
+                  <form action="https://api.staticforms.xyz/submit" method="POST" enctype="multipart/form-data">
+                    <label for="name">Név:</label>
+                    <input type="text" id="name" name="name" required>
+              
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+              
+                    <label for="subject">Tárgy:</label>
+                    <input type="text" id="subject" name="subject">
+              
+                    <label for="message">Üzenet:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+              
+                    <label for="file">Kép csatolása (opcionális):</label>
+                    <input type="file" id="file" name="$file">
+              
+                    <!-- StaticForms hidden mezők -->
+                    <input type="hidden" name="accessKey" value="sf_0m8i7c8e229b9bad1c54i570">
+                    <input type="hidden" name="redirectTo" value="https://www.galambosi-to.hu">
+                    <input type="hidden" name="replyTo" value="galambosito@gmail.com">
+              
+                    <button type="submit">Küldés</button>
+                  </form>
                 </div>
+              
+                <!-- Jobb oldal: elérhetőség -->
                 <div class="contact-info">
-                    <h3>Elérhetőségeink</h3>
-                    <p>Szívesen válaszolunk minden kérdésre a tóval, horgászattal és látogatással kapcsolatban. Akár helyfoglalas is lehetséges a tökéletes horgászat érdekében!</p>
-                    
-                    <div class="contact-method">
-                        <strong>Cím:</strong>
-                        <span>2682 Püspökhatvan, Galambosi-tó</span>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <strong>Telefon:</strong>
-                        <span>+36 (30) 520-8324</span>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <strong>E-mail:</strong>
-                        <span>galambosito@gmail.com</span>
-                    </div>
-                    
-
-                    
-                    <h3>Tókezelő</h3>
-                    <p>Lukács Gábor<br>
+                  <h3>Elérhetőségeink</h3>
+                  <p>Szívesen válaszolunk minden kérdésre a tóval, horgászattal és látogatással kapcsolatban. Akár helyfoglalás is lehetséges a tökéletes horgászat érdekében!</p>
+              
+                  <div class="contact-method">
+                    <strong>Cím:</strong>
+                    <span>2682 Püspökhatvan, Galambosi-tó</span>
+                  </div>
+              
+                  <div class="contact-method">
+                    <strong>Telefon:</strong>
+                    <span>+36 (30) 520-8324</span>
+                  </div>
+              
+                  <div class="contact-method">
+                    <strong>E-mail:</strong>
+                    <span>galambosito@gmail.com</span>
+                  </div>
+              
+                  <h3>Tókezelő</h3>
+                  <p>Lukács Gábor<br>
                     +36 (30) 520-8324<br>
                     galambosito@gmail.com</p>
                 </div>
             </div>
-        </div>
     </div>
     
     <!-- Lightbox -->
