@@ -10,7 +10,7 @@
     <meta name="author" content="Galambosi-tó">
     <meta property="og:title" content="Galambosi-tó – Püspökhatvan természeti kincse">
     <meta property="og:description" content="Ismerje meg a Galambosi-tavat, halfajtáinkat és a természet nyugalmát.">
-    <meta property="og:image" content="https://galambosi-to.hu/sharecucc.png">
+    <meta property="og:image" content="https://galambosi-to.hu/Galambosito/sharecucc.png">
     <meta property="og:url" content="https://galambosi-to.hu/Galambosito/">
     <meta name="twitter:card" content="summary_large_image">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -546,7 +546,18 @@
         
         .tab-content.active {
             display: block;
-        }        
+        }
+         /* Fogások */
+        .slider-wrapper {
+            position: relative;
+        }
+        .catch-slide {
+            display: none;
+        }
+        .catch-slide.active {
+            display: block;
+        }
+
         /* Különböző képernyőméretekre */
         @media (max-width: 768px) {
             .fish-container,
@@ -617,7 +628,7 @@
             }
 
             .price-table th, .price-table td {
-                padding: 0.6rem;
+                padding: 0.4rem;
              }
             
             .tab-button {
@@ -694,13 +705,17 @@
         <div id="home" class="page active">
             <!-- Új automatikus képváltó slider -->
             <div class="hero-slider">
-                <img src="táj 2.jpg" alt="Galambosi-tó panoráma" class="slider-image active">
-                <img src="naplemente.jpg" alt="Naplemente a tónál" class="slider-image">
-                <img src="este.jpg" alt="Galambosi-tó esti fényben" class="slider-image">
-                <img src="gal1.jpg" alt="Galambosi-tó" class="slider-image">
+                <img src="IMG_1179.jpeg" alt="Galambosi-tó panoráma" class="slider-image active">
+                <img src="IMG_1182.jpeg" alt="Naplemente a tónál" class="slider-image">
+                <img src="IMG_1183.jpeg" alt="Galambosi-tó esti fényben" class="slider-image">
+                <img src="IMG_1181.jpeg" alt="Galambosi-tó" class="slider-image">
                 <img src="gal2.jpg" alt="Galambosi-tó" class="slider-image">
                 <img src="slide1.jpeg" alt="Galambosi-tó" class="slider-image">
                 <img src="slide2.jpeg" alt="Galambosi-tó" class="slider-image">
+                <img src="IMG_1185.jpeg" alt="Galambosi-tó" class="slider-image">
+                <img src="IMG_1187.jpeg" alt="Galambosi-tó" class="slider-image">
+                <img src="IMG_1190.jpeg" alt="Galambosi-tó" class="slider-image">
+                <img src="IMG_1191.jpeg" alt="Galambosi-tó" class="slider-image">
             </div>
             
             <section class="intro">
@@ -799,12 +814,12 @@
                 <h2>Halak a Galambosi-tóban</h2>
                 <p>Ismerje meg a tavunkban élő különböző halfajtákat és az eddigi rekordokat.</p>
             </section>
-            
             <div class="tab-container">
                 <div class="tab-buttons">
-                    <button class="tab-button active" onclick="showTab('fish-species')">Halfajták</button>
-                    <button class="tab-button" onclick="showTab('fish-records')">Rekordok</button>
-                </div>
+                  <button class="tab-button active" onclick="showTab('fish-species')">Halfajták</button>
+                  <button class="tab-button" onclick="showTab('fish-records')">Rekordok</button>
+                  <button class="tab-button" onclick="showTab('fish-catches')">Fogások</button>
+                </div>>
                 
                 <!-- Halfajták tab -->
                 <div id="fish-species" class="tab-content active">
@@ -950,7 +965,70 @@
                 </div>
             </div>
         </div>
+        <!-- Fogások -->
+        <div id="fish-catches" class="tab-content">
+            <div class="records-container">
+              <div class="record-card">
+                <div class="record-info">
+                  <h3 class="record-name">Ponty fogások</h3>
+                  <div class="slider-wrapper">
+                    <img src="pontyfogas1.jpg" class="record-image catch-slide active" alt="Ponty fogás 1">
+                    <img src="pontyfogas2.jpg" class="record-image catch-slide" alt="Ponty fogás 2">
+                    <img src="pontyfogas3.jpg" class="record-image catch-slide" alt="Ponty fogás 3">
+                    <div class="gallery-nav">
+                      <button onclick="slideGallery(this, -1)">&#10094;</button>
+                      <button onclick="slideGallery(this, 1)">&#10095;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
         
+              <div class="record-card">
+                <div class="record-info">
+                  <h3 class="record-name">Amúr fogások</h3>
+                  <div class="slider-wrapper">
+                    <img src="amurfogas1.jpg" class="record-image catch-slide active" alt="Amur fogás 1">
+                    <img src="amurfogas2.jpg" class="record-image catch-slide" alt="Amur fogás 2">
+                    <div class="gallery-nav">
+                      <button onclick="slideGallery(this, -1)">&#10094;</button>
+                      <button onclick="slideGallery(this, 1)">&#10095;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="record-card">
+                <div class="record-info">
+                  <h3 class="record-name">Tok fogások</h3>
+                  <div class="slider-wrapper">
+                    <img src="amurfogas1.jpg" class="record-image catch-slide active" alt="Amur fogás 1">
+                    <img src="amurfogas2.jpg" class="record-image catch-slide" alt="Amur fogás 2">
+                    <div class="gallery-nav">
+                      <button onclick="slideGallery(this, -1)">&#10094;</button>
+                      <button onclick="slideGallery(this, 1)">&#10095;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="record-card">
+                <div class="record-info">
+                  <h3 class="record-name">Koi ponty fogások</h3>
+                  <div class="slider-wrapper">
+                    <img src="amurfogas1.jpg" class="record-image catch-slide active" alt="Amur fogás 1">
+                    <img src="amurfogas2.jpg" class="record-image catch-slide" alt="Amur fogás 2">
+                    <div class="gallery-nav">
+                      <button onclick="slideGallery(this, -1)">&#10094;</button>
+                      <button onclick="slideGallery(this, 1)">&#10095;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- További halfajták ide -->
+            </div>
+          </div>
+        </div>        
         <!-- Rólunk oldal - A JAVÍTÁS: Ez ide került át a fish tab-content-en kívülre -->
         <div id="about" class="page">
             <section class="intro">
@@ -996,7 +1074,7 @@
               <div class="contact-form">
                 <h3>Írjon nekünk</h3>
                 <form id="contactForm" action="https://formsubmit.co/galambosito@gmail.com" method="POST">
-                    <input type="hidden" name="_next" value="https://galambosito.github.io/Galambosito/">
+                    <input type="hidden" name="_next" value="https://galambosito.hu/">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_subject" value="Új üzenet a Galambosi-tó weboldaláról">
                     
@@ -1053,6 +1131,16 @@
     </footer>
 
     <script>
+        //Fogások rész
+        function slideGallery(button, direction) {
+            const wrapper = button.closest(".slider-wrapper");
+            const slides = wrapper.querySelectorAll(".catch-slide");
+            let currentIndex = Array.from(slides).findIndex(slide => slide.classList.contains("active"));
+
+        slides[currentIndex].classList.remove("active");
+            let newIndex = (currentIndex + direction + slides.length) % slides.length;
+        slides[newIndex].classList.add("active");
+}
         // Oldalváltás kezelése
         function showPage(pageId) {
             // Összes oldal elrejtése
