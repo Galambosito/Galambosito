@@ -319,6 +319,25 @@
             overflow: auto;
             background-color: rgba(0,0,0,0.9);
         }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none; /* csak a gombok kattinthatók */
+        }
+        .lightbox-nav button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            pointer-events: all;
+            padding: 1rem;
+        }
         
         .lightbox-content {
             margin: auto;
@@ -900,9 +919,9 @@
                           </div>
                         <!-- Ponty rekord -->
                         <div class="record-card">
-                            <img src="ponty_rekord.jpg" alt="Rekord ponty" class="record-image">
+                            <img src="Rekordbejegyzes.png" alt="Rekord ponty" class="record-image">
                             <div class="record-info">
-                                <h3 class="record-name">Tükörponty</h3>
+                                <h3 class="record-name">Ponty</h3>
                                 <div class="record-details">
                                     <span class="record-label">Súly:</span>
                                     <span>-</span>
@@ -916,7 +935,7 @@
                 
                         <!-- Amur rekord -->
                         <div class="record-card">
-                            <img src="amur_rekord.jpg" alt="Rekord amur" class="record-image">
+                            <img src="Rekordbejegyzes.png" alt="Rekord amur" class="record-image">
                             <div class="record-info">
                                 <h3 class="record-name">Amur</h3>
                                 <div class="record-details">
@@ -932,7 +951,7 @@
                 
                         <!-- Koi ponty rekord -->
                         <div class="record-card">
-                            <img src="koi_rekord.jpg" alt="Rekord koi ponty" class="record-image">
+                            <img src="Rekordbejegyzes.png" alt="Rekord koi ponty" class="record-image">
                             <div class="record-info">
                                 <h3 class="record-name">Koi ponty</h3>
                                 <div class="record-details">
@@ -948,12 +967,26 @@
                 
                         <!-- Tokhal rekord -->
                         <div class="record-card">
-                            <img src="tok_rekord.jpg" alt="Rekord tokhal" class="record-image">
+                            <img src="Rekordbejegyzes.png" alt="Rekord tokhal" class="record-image">
                             <div class="record-info">
                                 <h3 class="record-name">Tokhal</h3>
                                 <div class="record-details">
                                     <span class="record-label">Súly:</span>
-                                    <span>-kg</span>
+                                    <span>-</span>
+                                    <span class="record-label">Fogta:</span>
+                                    <span>-</span>
+                                    <span class="record-label">Dátum:</span>
+                                    <span>-</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="record-card">
+                            <img src="Rekordbejegyzes.png" alt="Rekord keszeg" class="record-image">
+                            <div class="record-info">
+                                <h3 class="record-name">Keszeg</h3>
+                                <div class="record-details">
+                                    <span class="record-label">Súly:</span>
+                                    <span>-</span>
                                     <span class="record-label">Fogta:</span>
                                     <span>-</span>
                                     <span class="record-label">Dátum:</span>
@@ -963,8 +996,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
         <!-- Fogások -->
         <div id="fish-catches" class="tab-content">
             <div class="records-container">
@@ -972,9 +1003,9 @@
                 <div class="record-info">
                   <h3 class="record-name">Ponty fogások</h3>
                   <div class="slider-wrapper">
-                    <img src="pontyfogas1.jpg" class="record-image catch-slide active" alt="Ponty fogás 1">
-                    <img src="pontyfogas2.jpg" class="record-image catch-slide" alt="Ponty fogás 2">
-                    <img src="pontyfogas3.jpg" class="record-image catch-slide" alt="Ponty fogás 3">
+                    <img src="pontyfogas3.JPG" class="record-image catch-slide active" alt="Ponty fogás 1"onclick="openLightboxCatches(this)">
+                    <img src="pontyfogas2.png" class="record-image catch-slide" alt="Ponty fogás 2"onclick="openLightboxCatches(this)">
+                    <img src="pontyfogas1.png" class="record-image catch-slide" alt="Ponty fogás 3"onclick="openLightboxCatches(this)">
                     <div class="gallery-nav">
                       <button onclick="slideGallery(this, -1)">&#10094;</button>
                       <button onclick="slideGallery(this, 1)">&#10095;</button>
@@ -987,8 +1018,8 @@
                 <div class="record-info">
                   <h3 class="record-name">Amúr fogások</h3>
                   <div class="slider-wrapper">
-                    <img src="amurfogas1.jpg" class="record-image catch-slide active" alt="Amur fogás 1">
-                    <img src="amurfogas2.jpg" class="record-image catch-slide" alt="Amur fogás 2">
+                    <img src="amurfogas1.png" class="record-image catch-slide active" alt="Amur fogás 1"onclick="openLightboxCatches(this)">
+                    <img src="amurfogas2.png" class="record-image catch-slide" alt="Amur fogás 2"onclick="openLightboxCatches(this)">
                     <div class="gallery-nav">
                       <button onclick="slideGallery(this, -1)">&#10094;</button>
                       <button onclick="slideGallery(this, 1)">&#10095;</button>
@@ -1001,11 +1032,10 @@
                 <div class="record-info">
                   <h3 class="record-name">Tok fogások</h3>
                   <div class="slider-wrapper">
-                    <img src="amurfogas1.jpg" class="record-image catch-slide active" alt="Amur fogás 1">
-                    <img src="amurfogas2.jpg" class="record-image catch-slide" alt="Amur fogás 2">
+                    <img src="tokfogas1.png" class="record-image catch-slide active" alt="Tok fogás 1"onclick="openLightboxCatches(this)">
                     <div class="gallery-nav">
-                      <button onclick="slideGallery(this, -1)">&#10094;</button>
-                      <button onclick="slideGallery(this, 1)">&#10095;</button>
+                        <button onclick="slideGallery(this, -1)">&#10094;</button>
+                        <button onclick="slideGallery(this, 1)">&#10095;</button>
                     </div>
                   </div>
                 </div>
@@ -1013,10 +1043,10 @@
 
               <div class="record-card">
                 <div class="record-info">
-                  <h3 class="record-name">Koi ponty fogások</h3>
+                  <h3 class="record-name">Keszeg fogások</h3>
                   <div class="slider-wrapper">
-                    <img src="amurfogas1.jpg" class="record-image catch-slide active" alt="Amur fogás 1">
-                    <img src="amurfogas2.jpg" class="record-image catch-slide" alt="Amur fogás 2">
+                    <img src="keszegfogas1.png" class="record-image catch-slide active" alt="Keszeg fogás 1"onclick="openLightboxCatches(this)">
+                    <img src="keszegfogas2.png" class="record-image catch-slide" alt="Keszeg fogás 2"onclick="openLightboxCatches(this)">
                     <div class="gallery-nav">
                       <button onclick="slideGallery(this, -1)">&#10094;</button>
                       <button onclick="slideGallery(this, 1)">&#10095;</button>
@@ -1024,11 +1054,20 @@
                   </div>
                 </div>
               </div>
-        
-              <!-- További halfajták ide -->
             </div>
           </div>
-        </div>        
+        </div>
+            <!-- Lightbox a fogásokhoz -->
+        <div id="lightboxCatchModal" class="lightbox-modal">
+            <span class="close-lightbox" onclick="closeLightboxCatches()">&times;</span>
+            <img id="lightboxCatchImage" class="lightbox-content">
+            <div class="lightbox-nav">
+            <button onclick="navigateLightboxCatch(-1)">&#10094;</button>
+            <button onclick="navigateLightboxCatch(1)">&#10095;</button>
+            </div>
+        </div>
+    </div>
+                
         <!-- Rólunk oldal - A JAVÍTÁS: Ez ide került át a fish tab-content-en kívülre -->
         <div id="about" class="page">
             <section class="intro">
@@ -1108,6 +1147,10 @@
                   <strong>E-mail:</strong>
                   <span>galambosito@gmail.com</span>
                 </div>
+                <div class="contact-method">
+                <strong>WIFI:</strong>
+                <span>Ingyenes Wi-Fi elérhető a tó területén minden vendég számára.</span>
+                </div>
                 <h3>Tókezelő</h3>
                 <p>Lukács Gábor<br>
                   +36 (30) 520-8324<br>
@@ -1132,27 +1175,47 @@
 
     <script>
         //Fogások rész
+        let lightboxCatchImage;
+        let lightboxCatchModal;
+        let catchImages = [];
+        let currentCatchIndex = 0;
+    
         function slideGallery(button, direction) {
             const wrapper = button.closest(".slider-wrapper");
             const slides = wrapper.querySelectorAll(".catch-slide");
             let currentIndex = Array.from(slides).findIndex(slide => slide.classList.contains("active"));
-
-        slides[currentIndex].classList.remove("active");
+    
+            slides.forEach(slide => slide.classList.remove("active"));
             let newIndex = (currentIndex + direction + slides.length) % slides.length;
-        slides[newIndex].classList.add("active");
-}
+            slides[newIndex].classList.add("active");
+        }
+    
+        function openLightboxCatches(imageElement) {
+            lightboxCatchImage = document.getElementById("lightboxCatchImage");
+            lightboxCatchModal = document.getElementById("lightboxCatchModal");
+            catchImages = Array.from(imageElement.closest('.slider-wrapper').querySelectorAll('.record-image.catch-slide'));
+            currentCatchIndex = catchImages.findIndex(img => img === imageElement);
+    
+            lightboxCatchImage.src = imageElement.src;
+            lightboxCatchModal.style.display = "block";
+        }
+    
+        function closeLightboxCatches() {
+            if (lightboxCatchModal) lightboxCatchModal.style.display = "none";
+        }
+    
+        function navigateLightboxCatch(direction) {
+            if (!catchImages.length) return;
+            currentCatchIndex = (currentCatchIndex + direction + catchImages.length) % catchImages.length;
+            lightboxCatchImage.src = catchImages[currentCatchIndex].src;
+        }
+    
         // Oldalváltás kezelése
         function showPage(pageId) {
-            // Összes oldal elrejtése
             const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Kiválasztott oldal megjelenítése
+            pages.forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            
-            // Menüpontok aktív állapotának frissítése
+    
             const navLinks = document.querySelectorAll('nav a');
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -1161,151 +1224,102 @@
                 }
             });
         }
-        
+    
         // Képek a galériához
         const images = [
-            "táj 2.jpg",
-            "naplemente.jpg",
-            "növényzet.jpg",
-            "este.jpg",
-            "gal1.jpg",
-            "gal2.jpg",
-            "gal3.jpg",
-            "gal4.jpg",
-            "gal5.jpg",
-            "to1.jpeg",
-            "to2.jpeg",
-            "to3.jpeg",
-            "to4.jpeg",
-            "to5.jpeg",
-            "to6.jpeg",
-            
+            "táj 2.jpg", "naplemente.jpg", "növényzet.jpg", "este.jpg", "gal1.jpg", "gal2.jpg", "gal3.jpg",
+            "gal4.jpg", "gal5.jpg", "to1.jpeg", "to2.jpeg", "to3.jpeg", "to4.jpeg", "to5.jpeg", "to6.jpeg"
         ];
-        
-        // Képleírások a galériához
+    
         const descriptions = [
-            "Galambosi-tó panoráma",
-            "Naplemente a tónál",
-            "Gazdag partmenti növényzet",
-            "Galambosi-tó esti fényben",
-            "Galambosi-tó",
-            "Galambosi-tó",
-            "Galambosi-tó",
-            "Galambosi-tó",
-            "Galambosi-tó",
-            "Galambosi-tó",
-            "Galambosi-tó",
-            "Galambosi-tó",
-            "Galambosi-tó",
-            "Galambosi-tó",
-            "Galambosi-tó"
-            
+            "Galambosi-tó panoráma", "Naplemente a tónál", "Gazdag partmenti növényzet", "Galambosi-tó esti fényben",
+            "Galambosi-tó", "Galambosi-tó", "Galambosi-tó", "Galambosi-tó", "Galambosi-tó",
+            "Galambosi-tó", "Galambosi-tó", "Galambosi-tó", "Galambosi-tó", "Galambosi-tó", "Galambosi-tó"
         ];
-        
+    
         let currentImageIndex = 0;
-        
-        // Galéria képváltás
+    
         function changeImage(n) {
             currentImageIndex = (currentImageIndex + n + images.length) % images.length;
             const galleryImg = document.getElementById('galleryImg');
             galleryImg.src = images[currentImageIndex];
             galleryImg.alt = descriptions[currentImageIndex];
         }
-        
-        // Lightbox megnyitása
+    
         function openLightbox() {
             document.getElementById("lightboxImage").src = images[currentImageIndex];
             document.getElementById("lightboxModal").style.display = "block";
         }
-        
-        // Lightbox bezárása
+    
         function closeLightbox() {
             document.getElementById("lightboxModal").style.display = "none";
         }
-        
-        // Lightbox képváltás
+    
         function lightboxChangeImage(n) {
             currentImageIndex = (currentImageIndex + n + images.length) % images.length;
             document.getElementById("lightboxImage").src = images[currentImageIndex];
         }
-        
-        // Tab kezelés
+    
         function showTab(tabId) {
-            // Tab gombok kezelése
-            const tabButtons = document.querySelectorAll('.tab-button');
-            tabButtons.forEach(button => {
-                button.classList.remove('active');
-                if (button.getAttribute('onclick').includes(tabId)) {
-                    button.classList.add('active');
-                }
-            });
-
-            // Tab tartalom kezelése
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-            });
-            document.getElementById(tabId).classList.add('active');
+            const tabs = document.querySelectorAll("#fish .tab-content");
+            const buttons = document.querySelectorAll("#fish .tab-button");
+    
+            tabs.forEach(tab => tab.classList.remove("active"));
+            buttons.forEach(button => button.classList.remove("active"));
+    
+            document.getElementById(tabId).classList.add("active");
+    
+            const clickedButton = Array.from(buttons).find(btn =>
+                btn.getAttribute("onclick").includes(tabId)
+            );
+            if (clickedButton) clickedButton.classList.add("active");
         }
-
-        // Automatikus képváltó slider
+    
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slider-image');
-
+    
         function showNextSlide() {
             slides[currentSlideIndex].classList.remove('active');
             currentSlideIndex = (currentSlideIndex + 1) % slides.length;
             slides[currentSlideIndex].classList.add('active');
         }
-
-        // Képváltás 5 másodpercenként
+    
         setInterval(showNextSlide, 5000);
-        
-        // DOM betöltéskor lefutó kód
-        document.addEventListener('DOMContentLoaded', function() {
+    
+        document.addEventListener('DOMContentLoaded', function () {
             const galleryImg = document.getElementById('galleryImg');
             if (galleryImg) {
-                galleryImg.addEventListener('click', function() {
+                galleryImg.addEventListener('click', function () {
                     openLightbox();
                 });
             }
-            
-            // Kapcsolati űrlap kezelése
+    
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    // Az alapértelmezett elküldést nem akadályozzuk meg,
-                    // de előkészítjük a visszatérés utáni üzenet megjelenítését
-                    
-                    // Tároljuk a sikeres küldés információt
+                contactForm.addEventListener('submit', function (e) {
                     localStorage.setItem('formSubmitted', 'true');
                 });
             }
-            
-            // Ellenőrizzük, volt-e sikeres küldés
+    
             if (localStorage.getItem('formSubmitted') === 'true') {
-                // Ha volt, mutassuk a sikeres üzenetet
                 const successMessage = document.getElementById('successMessage');
                 if (successMessage) {
                     successMessage.style.display = 'block';
-                    
-                    // Tisztítsuk a storage-t
                     localStorage.removeItem('formSubmitted');
-                    
-                    // 5 másodperc után rejtsük el az üzenetet
-                    setTimeout(function() {
+                    setTimeout(function () {
                         successMessage.style.display = 'none';
                     }, 5000);
                 }
             }
-            
-            // ESC gomb lenyomására bezárjuk a lightboxot
-            document.addEventListener('keydown', function(e) {
+    
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') {
                     closeLightbox();
+                    closeLightboxCatches();
                 }
             });
         });
     </script>
+    
 </body>
 </html>
